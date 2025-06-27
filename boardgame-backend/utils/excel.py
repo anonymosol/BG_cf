@@ -28,7 +28,7 @@ def extract_names(cell):
 
 def process_salary(file):
     df = pd.read_excel(file, header=None)
-    employees = 
+    employees = {}
 
     for i in range(df.shape[1]):
         if df.iloc[1, i] == 'Thứ 2':

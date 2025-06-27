@@ -35,11 +35,11 @@ def init_db():
 # 📦 Employee CRUD operations
 # ==========================
 
-def add_employee(name, position, salary, role):
+def add_employee(name, email, phone, position, salary, role):
     db = get_db()
 
-    # Tạo ID ngẫu nhiên và đảm bảo không trùng
-    for _ in range(10):  # thử tối đa 10 lần
+    # Tạo ID ngẫu nhiên không trùng
+    for _ in range(10):
         employee_id = random.randint(100, 9999)
         exists = db.execute("SELECT id FROM employees WHERE id = ?", (employee_id,)).fetchone()
         if not exists:
@@ -48,11 +48,12 @@ def add_employee(name, position, salary, role):
         raise Exception("Could not generate unique employee ID")
 
     db.execute(
-        "INSERT INTO employees (id, name, position, salary, role) VALUES (?, ?, ?, ?, ?)",
-        (employee_id, name, position, salary, role)
+        "INSERT INTO employees (id, name, email, phone, position, salary, role) VALUES (?, ?, ?, ?, ?, ?, ?)",
+        (employee_id, name, email, phone, position, salary, role)
     )
     db.commit()
     return employee_id
+
 def get_all_employees():
     db = get_db()
     result = db.execute("SELECT * FROM employees").fetchall()

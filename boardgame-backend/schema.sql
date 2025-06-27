@@ -1,11 +1,14 @@
 -- Table for employees
 CREATE TABLE IF NOT EXISTS employees (
     id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL,
+    email TEXT,
+    phone TEXT,
     position TEXT,
-    salary INTEGER DEFAULT 0,
-    role TEXT DEFAULT 'staff'
+    salary REAL,
+    role TEXT
 );
+
 
 -- Table for salary reports
 CREATE TABLE IF NOT EXISTS salary_reports (
